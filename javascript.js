@@ -7,11 +7,25 @@ function createBoard(size) {
   board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-  for (let index = 0; index < size * size; index++) {
+  let sizeSquared = size * size;
+  for (let index = 0; index < sizeSquared; index++) {
     let pixel = document.createElement("div");
     pixel.style.backgroundColor = "blue";
     board.appendChild(pixel);
   }
 }
 
-createBoard(18);
+// Limit the max input to 100
+function changeSize(size) {
+  if (size > 0 && size <= 100) {
+    createBoard(size);
+  } else {
+    const sizeLimit = document.querySelector(".change-size");
+    let sizeLimitWarning = document.createTextNode(
+      "Too many grids! Please type a value <= 100"
+    );
+    sizeLimit.appendChild(sizeLimitWarning);
+  }
+}
+
+changeSize(99);
