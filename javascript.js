@@ -1,4 +1,7 @@
 /** @type {HTMLDivElement} */
+document.addEventListener("DOMContentLoaded", () => {
+  createBoard(getsize());
+});
 
 // Dynamically create a grid based on user input size
 function createBoard(size) {
@@ -13,7 +16,8 @@ function createBoard(size) {
     let pixel = document.createElement("div");
     pixel.style.backgroundColor = "blue";
     pixel.addEventListener("mouseover", () => {
-      pixel.style.backgroundColor = "lightblue";
+      // Still need to find a way to make it dynamic...
+      pixel.style.backgroundColor = "black";
     });
     board.appendChild(pixel);
   }
@@ -32,8 +36,18 @@ function changeSize(size) {
   }
 }
 
+function changeColor() {
+  const buttons = document.querySelectorAll("button");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      pixel.style.backgroundColor = button.id;
+    });
+  });
+}
+
 function randomColor() {}
 
-function changeColor() {}
-
 function resetBoard() {}
+
+changeSize(100);
