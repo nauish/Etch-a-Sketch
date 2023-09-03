@@ -1,3 +1,13 @@
+let selectedColor = "red"; // Default color
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectedColor = button.id;
+  });
+});
+
 /** @type {HTMLDivElement} */
 document.addEventListener("DOMContentLoaded", () => {
   changeSize();
@@ -15,9 +25,8 @@ function createBoard(size) {
   for (let index = 0; index < sizeSquared; index++) {
     let pixel = document.createElement("div");
     pixel.style.backgroundColor = "blue";
-    pixel.addEventListener("mouseover", () => {
-      // Still need to find a way to make it dynamic...
-      pixel.style.backgroundColor = "black";
+    pixel.addEventListener("mouseover", (event) => {
+      event.target.style.backgroundColor = selectedColor;
     });
     board.appendChild(pixel);
   }
@@ -34,16 +43,9 @@ function changeSize() {
   }
 }
 
-function changeColor() {
-  const buttons = document.querySelectorAll("button");
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      pixel.style.backgroundColor = button.id;
-    });
-  });
+function randomColor() {
+  // To be added
 }
-
-function randomColor() {}
-
-function resetBoard() {}
+function resetBoard() {
+  // To be added
+}
