@@ -8,6 +8,17 @@ buttons.forEach((button) => {
   });
 });
 
+// Limit the max input to 100
+function changeSize() {
+  let sizeInput = prompt("What would be the pixel of the board? (1 - 100)");
+  if (sizeInput > 0 && sizeInput <= 100) {
+    createBoard(+sizeInput);
+  } else {
+    alert("Please enter a valid number");
+    changeSize();
+  }
+}
+
 /** @type {HTMLDivElement} */
 document.addEventListener("DOMContentLoaded", () => {
   changeSize();
@@ -24,28 +35,22 @@ function createBoard(size) {
   let sizeSquared = size * size;
   for (let index = 0; index < sizeSquared; index++) {
     let pixel = document.createElement("div");
-    pixel.style.backgroundColor = "blue";
+    pixel.style.backgroundColor = "white";
+    pixel.style.border = "1px solid black";
     pixel.addEventListener("mouseover", (event) => {
-      event.target.style.backgroundColor = selectedColor;
+      if (selectedColor == "random") {
+        event.target.style.backgroundColor = randomColor();
+      } else {
+        event.target.style.backgroundColor = selectedColor;
+      }
     });
     board.appendChild(pixel);
   }
 }
 
-// Limit the max input to 100
-function changeSize() {
-  let sizeInput = prompt("What would be the pixel of the board? (1 - 100)");
-  if (sizeInput > 0 && sizeInput <= 100) {
-    createBoard(+sizeInput);
-  } else {
-    alert("Please enter a valid number");
-    changeSize();
-  }
-}
-
 function randomColor() {
-  // To be added
-}
-function resetBoard() {
-  // To be added
+  let r = Math.floor(Math.random() * 255);
+  let g = Math.floor(Math.random() * 255);
+  let b = Math.floor(Math.random() * 255);
+  return `rgb(${r},${g},${b})`;
 }
