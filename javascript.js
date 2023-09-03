@@ -1,8 +1,9 @@
-let selectedColor = "red"; // Default color
+let selectedColor = "random"; // Default color
 
 const buttons = document.querySelectorAll(".color-buttons > button");
 
 buttons.forEach((button) => {
+  button.style.color = button.id;
   button.addEventListener("click", () => {
     selectedColor = button.id;
   });
