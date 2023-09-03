@@ -1,14 +1,17 @@
-/** @type {HTMLDivElement} */
+// Dynamically create a grid based on user input size
+function createBoard(size) {
+  /** @type {HTMLDivElement} */
+  let board = document.querySelector(".board");
 
-// Dynamically create a grid
-let board = document.querySelector(".board");
+  // Not styling in CSS file for changing the grid size in the future
+  board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-// Not styling in CSS for changing the grid size in the future
-board.style.gridTemplateColumns = "repeat(16, 1fr)";
-board.style.gridTemplateRows = "repeat(16, 1fr)";
-
-for (let index = 0; index < 256; index++) {
-  let pixel = document.createElement("div");
-  pixel.style.backgroundColor = "blue";
-  board.insertAdjacentElement("beforeend", pixel);
+  for (let index = 0; index < size * size; index++) {
+    let pixel = document.createElement("div");
+    pixel.style.backgroundColor = "blue";
+    board.appendChild(pixel);
+  }
 }
+
+createBoard(18);
