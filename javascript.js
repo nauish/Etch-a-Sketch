@@ -1,6 +1,6 @@
 /** @type {HTMLDivElement} */
 document.addEventListener("DOMContentLoaded", () => {
-  createBoard(getsize());
+  changeSize();
 });
 
 // Dynamically create a grid based on user input size
@@ -24,15 +24,13 @@ function createBoard(size) {
 }
 
 // Limit the max input to 100
-function changeSize(size) {
-  if (size > 0 && size <= 100) {
-    createBoard(size);
+function changeSize() {
+  let sizeInput = prompt("What would be the pixel of the board? (1 - 100)");
+  if (sizeInput > 0 && sizeInput <= 100) {
+    createBoard(+sizeInput);
   } else {
-    const sizeLimit = document.querySelector(".change-size");
-    let sizeLimitWarning = document.createTextNode(
-      "Too many grids! Please type a value <= 100"
-    );
-    sizeLimit.appendChild(sizeLimitWarning);
+    alert("Please enter a valid number");
+    changeSize();
   }
 }
 
@@ -49,5 +47,3 @@ function changeColor() {
 function randomColor() {}
 
 function resetBoard() {}
-
-changeSize(100);
