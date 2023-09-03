@@ -1,6 +1,6 @@
 let selectedColor = "red"; // Default color
 
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".color-buttons > button");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -8,20 +8,18 @@ buttons.forEach((button) => {
   });
 });
 
-// Limit the max input to 100
-function changeSize() {
-  let sizeInput = prompt("What would be the pixel of the board? (1 - 100)");
-  if (sizeInput > 0 && sizeInput <= 100) {
-    createBoard(+sizeInput);
-  } else {
-    alert("Please enter a valid number");
-    changeSize();
-  }
-}
+const changeSizeBtn = document.querySelector("#change-size-btn");
+changeSizeBtn.addEventListener("click", (event) => changeSize());
+
+const resetBtn = document.querySelector("#reset-btn");
+resetBtn.addEventListener("click", (event) => {
+  resetBoard();
+  createBoard(30);
+});
 
 /** @type {HTMLDivElement} */
 document.addEventListener("DOMContentLoaded", () => {
-  changeSize();
+  createBoard(30);
 });
 
 // Dynamically create a grid based on user input size
@@ -53,4 +51,21 @@ function randomColor() {
   let g = Math.floor(Math.random() * 255);
   let b = Math.floor(Math.random() * 255);
   return `rgb(${r},${g},${b})`;
+}
+
+// Limit the max input to 100
+function changeSize() {
+  let sizeInput = prompt("What would be the pixel of the board? (1 - 100)");
+  if (sizeInput > 0 && sizeInput <= 100) {
+    resetBoard();
+    createBoard(+sizeInput);
+  } else {
+    alert("Please enter a valid number");
+    changeSize();
+  }
+}
+
+function resetBoard() {
+  let board = document.querySelector(".board");
+  board.innerHTML = "";
 }
