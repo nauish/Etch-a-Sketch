@@ -1,6 +1,7 @@
+/** @type {HTMLDivElement} */
+
 // Dynamically create a grid based on user input size
 function createBoard(size) {
-  /** @type {HTMLDivElement} */
   let board = document.querySelector(".board");
 
   // Not styling in CSS file for changing the grid size in the future
@@ -11,6 +12,9 @@ function createBoard(size) {
   for (let index = 0; index < sizeSquared; index++) {
     let pixel = document.createElement("div");
     pixel.style.backgroundColor = "blue";
+    pixel.addEventListener("mouseover", () => {
+      pixel.style.backgroundColor = "lightblue";
+    });
     board.appendChild(pixel);
   }
 }
@@ -28,4 +32,8 @@ function changeSize(size) {
   }
 }
 
-changeSize(99);
+function randomColor() {}
+
+function changeColor() {}
+
+function resetBoard() {}
