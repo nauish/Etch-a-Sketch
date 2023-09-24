@@ -1,6 +1,6 @@
-let selectedColor = "random"; // Default color
-
 const buttons = document.querySelectorAll(".color-buttons > button");
+
+let selectedColor = "random"; // Default color
 
 buttons.forEach((button) => {
   button.style.color = button.id;
@@ -10,10 +10,10 @@ buttons.forEach((button) => {
 });
 
 const changeSizeBtn = document.querySelector("#change-size-btn");
-changeSizeBtn.addEventListener("click", (event) => changeSize());
+changeSizeBtn.addEventListener("click", () => changeSize());
 
 const resetBtn = document.querySelector("#reset-btn");
-resetBtn.addEventListener("click", (event) => {
+resetBtn.addEventListener("click", () => {
   resetBoard();
   createBoard(30);
 });
